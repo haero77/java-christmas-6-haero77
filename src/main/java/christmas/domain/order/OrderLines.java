@@ -19,11 +19,11 @@ public class OrderLines {
         return List.copyOf(this.lines);
     }
 
-    public long getMenuCountByType(MenuType type) {
+    public long getOrderCountByType(MenuType type) {
         return this.lines.stream()
-                .map(OrderLine::getMenu)
-                .filter(menu -> menu.matchesType(type))
-                .count();
+                .filter(line -> line.matchesMenuType(type))
+                .mapToInt(OrderLine::getCount)
+                .sum();
     }
 
     public TotalOrderAmount getTotalOrderAmount() {

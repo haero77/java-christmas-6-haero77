@@ -1,6 +1,7 @@
 package christmas.domain.order;
 
 import christmas.domain.menu.Menu;
+import christmas.domain.menu.MenuType;
 
 public class OrderLine {
 
@@ -18,6 +19,14 @@ public class OrderLine {
 
     public int getOrderAmount() {
         return menu.getPrice() * count.getCount();
+    }
+
+    public boolean matchesMenuType(MenuType type) {
+        return this.menu.matchesType(type);
+    }
+
+    public int getCount() {
+        return this.count.getCount();
     }
 
 }

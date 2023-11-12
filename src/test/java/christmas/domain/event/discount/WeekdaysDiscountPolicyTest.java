@@ -54,14 +54,14 @@ class WeekdaysDiscountPolicyTest {
                 new OrderLine(new Menu(MenuType.DESSERT, new MenuName("m3"), 3000), OrderCount.from(1)),
                 new OrderLine(new Menu(MenuType.DESSERT, new MenuName("m4"), 4000), OrderCount.from(10))
         )));
-        Reservation reservation = new Reservation(VisitDate.from(7), ORDER);
+        Reservation reservation = new Reservation(VisitDate.from(3), ORDER);
         DiscountPolicy discountPolicy = new WeekdaysDiscountPolicy(reservation);
 
         // when
         DiscountAmount result = discountPolicy.discount();
 
         // then
-        assertThat(result.getAmount()).isEqualTo(2023 * 2);
+        assertThat(result.getAmount()).isEqualTo(2023 * 11);
     }
 
 }

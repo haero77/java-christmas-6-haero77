@@ -37,8 +37,8 @@ class OrderManagerTest {
         assertThat(order.getOrderLines())
                 .extracting("menu", "count")
                 .containsExactlyInAnyOrder(
-                        tuple(new Menu(MenuType.APPETIZER, new MenuName("m1"), 1000), OrderCount.from(1)),
-                        tuple(new Menu(MenuType.MAIN, new MenuName("m2"), 1000), OrderCount.from(1))
+                        tuple(new Menu(MenuType.APPETIZER, new MenuName("m1"), 1000), 1),
+                        tuple(new Menu(MenuType.MAIN, new MenuName("m2"), 1000), 1)
                 );
     }
 

@@ -51,7 +51,7 @@ class WeekendsDiscountPolicyTest {
         Order ORDER = new Order(new OrderLines(List.of(
                 new OrderLine(new Menu(MenuType.MAIN, new MenuName("m1"), 1000), OrderCount.from(1)),
                 new OrderLine(new Menu(MenuType.MAIN, new MenuName("m2"), 2000), OrderCount.from(1)),
-                new OrderLine(new Menu(MenuType.MAIN, new MenuName("m3"), 3000), OrderCount.from(1)),
+                new OrderLine(new Menu(MenuType.MAIN, new MenuName("m3"), 3000), OrderCount.from(10)),
                 new OrderLine(new Menu(MenuType.DESSERT, new MenuName("m4"), 4000), OrderCount.from(10))
         )));
         Reservation reservation = new Reservation(VisitDate.from(1), ORDER);
@@ -61,7 +61,7 @@ class WeekendsDiscountPolicyTest {
         DiscountAmount result = discountPolicy.discount();
 
         // then
-        assertThat(result.getAmount()).isEqualTo(2023 * 3);
+        assertThat(result.getAmount()).isEqualTo(2023 * 12);
     }
 
 }

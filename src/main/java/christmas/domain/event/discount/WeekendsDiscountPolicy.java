@@ -34,7 +34,7 @@ public class WeekendsDiscountPolicy implements DiscountPolicy {
     }
 
     private long calculateDiscountAmount() {
-        return this.reservation.getMenuCountByType(DISCOUNT_MENU_TYPE) * DISCOUNT_AMOUNT_PER_MENU_COUNT;
+        return this.reservation.getOrderCountByType(DISCOUNT_MENU_TYPE) * DISCOUNT_AMOUNT_PER_MENU_COUNT;
     }
 
 }

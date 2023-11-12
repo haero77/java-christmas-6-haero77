@@ -23,8 +23,8 @@ public class Reservation {
         return this.date.getDate();
     }
 
-    public long getMenuCountByType(MenuType type) {
-        return this.order.getMenuCountByType(type);
+    public long getOrderCountByType(MenuType type) {
+        return this.order.getOrderCountByType(type);
     }
 
     public DayOfWeek getVisitDayOfWeek() {
