@@ -5,6 +5,10 @@ public enum MenuType {
     APPETIZER,
     MAIN,
     DESSERT,
-    BEVERAGE
+    BEVERAGE;
+
+    public boolean isBeverage() {
+        return this == BEVERAGE;
+    }
 
 }

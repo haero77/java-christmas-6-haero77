@@ -3,7 +3,6 @@ package christmas.domain.order.menu;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 public class MenuBoard {
 
@@ -11,12 +10,6 @@ public class MenuBoard {
 
     public MenuBoard(List<Menu> menu) {
         this.menu = menu;
-    }
-
-    public Optional<Menu> getMenuByName(String menuName) {
-        return this.menu.stream()
-                .filter(menu -> menu.matchesName(menuName))
-                .findAny();
     }
 
     public void validateMenuExistsByName(List<MenuName> menuNames) {
@@ -27,6 +20,12 @@ public class MenuBoard {
         }
     }
 
+    public List<Menu> getMenuByName(List<MenuName> menuNames) {
+        return menuNames.stream()
+                .map(this::getMenuByName)
+                .toList();
+    }
+
     private boolean existsMenuName(List<MenuName> menuNames) {
         return new HashSet<>(getExistingMenuNames()).containsAll(menuNames);
     }
@@ -35,6 +34,13 @@ public class MenuBoard {
         return this.menu.stream()
                 .map(Menu::getName)
                 .toList();
+    }
+
+    public Menu getMenuByName(MenuName menuName) {
+        return this.menu.stream()
+                .filter(menu -> menu.equalsByName(menuName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("No Menu exist for menuName=%s".formatted(menuName)));
     }
 
 }

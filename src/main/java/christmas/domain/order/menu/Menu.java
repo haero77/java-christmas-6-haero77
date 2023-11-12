@@ -1,5 +1,7 @@
 package christmas.domain.order.menu;
 
+import java.util.Objects;
+
 public class Menu {
 
     private final MenuType type;
@@ -12,12 +14,33 @@ public class Menu {
         this.price = price;
     }
 
-    public boolean matchesName(String name) {
+    public MenuName getName() {
+        return this.name;
+    }
+
+    public boolean equalsByName(MenuName name) {
         return this.name.equals(name);
     }
 
-    public MenuName getName() {
-        return this.name;
+    public boolean isBeverageType() {
+        return this.type.isBeverage();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Menu menu = (Menu) o;
+        return price == menu.price && type == menu.type && Objects.equals(name, menu.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, name, price);
     }
 
 }
