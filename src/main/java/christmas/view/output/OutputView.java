@@ -1,5 +1,6 @@
 package christmas.view.output;
 
+import christmas.view.input.utils.ReInputMessageFormatter;
 import christmas.view.print.Printer;
 
 public class OutputView {
@@ -14,6 +15,10 @@ public class OutputView {
 
     public void welcomeClient() {
         printer.printLine(OutputViewMessage.WELCOME);
+    }
+
+    public void showErrorMessageWithReInput(String message) {
+        printer.printLine(ReInputMessageFormatter.formatWithErrorPrefix(message));
     }
 
 }
