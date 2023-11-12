@@ -13,10 +13,10 @@ class DiscountDetailsTest {
     void calculateTotalDiscountAmount() {
         // given
         Map<DiscountType, DiscountAmount> discountAmounts = Map.of(
-                DiscountType.SPECIAL, new DiscountAmount(1000L),
-                DiscountType.X_MAS, new DiscountAmount(2000L),
-                DiscountType.WEEKDAYS, new DiscountAmount(3000L),
-                DiscountType.WEEKENDS, new DiscountAmount(4000L)
+                DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 1000L),
+                DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 2000L),
+                DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 3000L),
+                DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 4000L)
         );
 
         DiscountDetails discountDetails = new DiscountDetails(discountAmounts);

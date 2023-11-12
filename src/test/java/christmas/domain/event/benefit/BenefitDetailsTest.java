@@ -15,10 +15,10 @@ import org.junit.jupiter.api.Test;
 class BenefitDetailsTest {
 
     private static final Map<DiscountType, DiscountAmount> DISCOUNT_AMOUNTS = Map.of(
-            DiscountType.SPECIAL, new DiscountAmount(1000L),
-            DiscountType.X_MAS, new DiscountAmount(2000L),
-            DiscountType.WEEKDAYS, new DiscountAmount(3000L),
-            DiscountType.WEEKENDS, new DiscountAmount(4000L)
+            DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 1000L),
+            DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 2000L),
+            DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 3000L),
+            DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 4000L)
     );
 
     @DisplayName("총 혜택 금액을 계산할 수 있다.")
@@ -34,7 +34,7 @@ class BenefitDetailsTest {
         TotalBenefitAmount totalBenefitAmount = benefitDetails.calculateTotalBenefitAmount();
 
         // then
-        assertThat(totalBenefitAmount.getAmount()).isEqualTo(10_000L + 120_000L);
+        assertThat(totalBenefitAmount.getAmount()).isEqualTo(10_000L + 25_000L);
     }
 
     @DisplayName("총 주문 금액과 총 할인 금액을 통해 예상 결제 금액을 계산할 수 있다.")
