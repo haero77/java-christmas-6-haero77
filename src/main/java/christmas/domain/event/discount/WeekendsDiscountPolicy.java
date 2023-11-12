@@ -13,6 +13,7 @@ public class WeekendsDiscountPolicy implements DiscountPolicy {
     private static final List<DayOfWeek> DISCOUNT_DAY = List.of(FRIDAY, SATURDAY);
     private static final int DISCOUNT_AMOUNT_PER_MENU_COUNT = 2023;
     private static final MenuType DISCOUNT_MENU_TYPE = MenuType.MAIN;
+    private static final DiscountType TYPE = DiscountType.WEEKENDS;
 
     private final Reservation reservation;
 
@@ -23,9 +24,9 @@ public class WeekendsDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountAmount discount() {
         if (meetsDayRangeCriterion()) {
-            return new DiscountAmount(calculateDiscountAmount());
+            return new DiscountAmount(TYPE, calculateDiscountAmount());
         }
-        return new DiscountAmount(0);
+        return new DiscountAmount(TYPE, 0);
     }
 
     private boolean meetsDayRangeCriterion() {

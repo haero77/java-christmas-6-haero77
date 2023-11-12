@@ -11,7 +11,8 @@ public class XMasDiscountPolicy implements DiscountPolicy {
     private static final int DISCOUNT_INITIAL_AMOUNT = 1000;
     private static final int DAILY_INCREMENT_AMOUNT = 100;
 
-    private final DiscountType type = DiscountType.X_MAS;
+    private static final DiscountType TYPE = DiscountType.X_MAS;
+
     private final Reservation reservation;
 
     public XMasDiscountPolicy(Reservation reservation) {
@@ -21,9 +22,9 @@ public class XMasDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountAmount discount() {
         if (meetsDateRange(reservation.getVisitDate())) {
-            return new DiscountAmount(calculateDiscountAmount());
+            return new DiscountAmount(TYPE, calculateDiscountAmount());
         }
-        return new DiscountAmount(0);
+        return new DiscountAmount(TYPE, 0);
     }
 
     private int calculateDiscountAmount() {

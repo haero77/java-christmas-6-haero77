@@ -16,6 +16,7 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     );
 
     private static final int DEFAULT_DISCOUNT_AMOUNT = 1000;
+    private static final DiscountType TYPE = DiscountType.SPECIAL;
 
     private final Reservation reservation;
 
@@ -26,9 +27,9 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountAmount discount() {
         if (meetsDateRangeCriterion()) {
-            return new DiscountAmount(DEFAULT_DISCOUNT_AMOUNT);
+            return new DiscountAmount(TYPE, DEFAULT_DISCOUNT_AMOUNT);
         }
-        return new DiscountAmount(0);
+        return new DiscountAmount(TYPE, 0);
     }
 
     private boolean meetsDateRangeCriterion() {
