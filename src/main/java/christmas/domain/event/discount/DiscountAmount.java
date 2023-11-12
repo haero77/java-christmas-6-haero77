@@ -4,24 +4,24 @@ public class DiscountAmount {
 
     private static final int MIN_AMOUNT = 0;
 
-    private final int amount;
+    private final long amount;
 
-    private DiscountAmount(int amount) {
+    private DiscountAmount(long amount) {
         this.amount = amount;
     }
 
-    public static DiscountAmount from(int amount) {
+    public static DiscountAmount from(long amount) {
         validateMinAmount(amount);
         return new DiscountAmount(amount);
     }
 
-    private static void validateMinAmount(int amount) {
+    private static void validateMinAmount(long amount) {
         if (amount < MIN_AMOUNT) {
             throw new IllegalArgumentException("amount %d should be greater or equal than 0.".formatted(amount));
         }
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 

@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.domain.menu.MenuType;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,6 +17,10 @@ public class Order {
             throw new IllegalStateException("No OrderLines Exists");
         }
         return this.orderLines.getLines();
+    }
+
+    public long getMenuCountByType(MenuType type) {
+        return this.orderLines.getMenuCountByType(type);
     }
 
 }

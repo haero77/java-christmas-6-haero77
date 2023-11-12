@@ -1,5 +1,8 @@
 package christmas.domain.event;
 
+import christmas.utils.DayOfWeekParser;
+import java.time.DayOfWeek;
+
 public class VisitDate {
 
     private static final int MIN_ORDER_DATE = 1;
@@ -28,6 +31,10 @@ public class VisitDate {
 
     public int getDate() {
         return date;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return DayOfWeekParser.parse2023DecemberByDate(this.date);
     }
 
 }

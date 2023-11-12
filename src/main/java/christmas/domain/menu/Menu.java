@@ -26,6 +26,10 @@ public class Menu {
         return this.type.isBeverage();
     }
 
+    public boolean matchesType(MenuType type) {
+        return this.type.is(type);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

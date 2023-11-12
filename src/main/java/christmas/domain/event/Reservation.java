@@ -1,6 +1,8 @@
 package christmas.domain.event;
 
+import christmas.domain.menu.MenuType;
 import christmas.domain.order.Order;
+import java.time.DayOfWeek;
 import java.util.Objects;
 
 public class Reservation {
@@ -18,6 +20,14 @@ public class Reservation {
             throw new IllegalStateException("No VisitDate Exists");
         }
         return this.date.getDate();
+    }
+
+    public long getMenuCountByType(MenuType type) {
+        return this.order.getMenuCountByType(type);
+    }
+
+    public DayOfWeek getVisitDayOfWeek() {
+        return this.date.getDayOfWeek();
     }
 
 }

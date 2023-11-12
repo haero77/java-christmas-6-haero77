@@ -11,4 +11,8 @@ public enum MenuType {
         return this == BEVERAGE;
     }
 
+    public boolean is(MenuType type) {
+        return this == type;
+    }
+
 }
