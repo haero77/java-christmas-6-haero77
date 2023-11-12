@@ -21,13 +21,13 @@ public class InputViewImpl implements InputView {
         printer.printLine(InputGuideMessage.ORDER_DATE_INPUT_GUIDE.getMessage());
         String rawInput = reader.readLine();
 
-        validateOrderDate(rawInput);
+        validateVisitDate(rawInput);
 
         return VisitDate.from(Integer.parseInt(rawInput));
     }
 
-    private void validateOrderDate(String rawInput) {
-        StringValidator.validateInteger(rawInput, InputErrorMessage.ORDER_ERROR);
+    private void validateVisitDate(String rawInput) {
+        StringValidator.validateInteger(rawInput, InputErrorMessage.VISIT_DATE_ERROR);
     }
 
 }
