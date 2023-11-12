@@ -30,6 +30,10 @@ public class OrderRequest {
                 .sum();
     }
 
+    public List<Form> getForms() {
+        return List.copyOf(forms);
+    }
+
     public static class Form {
 
         private final String menuName;

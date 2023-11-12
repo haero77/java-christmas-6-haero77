@@ -3,6 +3,7 @@ package christmas.view.input;
 
 import static christmas.view.constant.CharacterSymbol.BLANK;
 
+import christmas.domain.order.OrderRequest;
 import christmas.domain.order.VisitDate;
 import christmas.utils.formatter.ErrorMessageFormatter;
 import christmas.view.input.error.InputErrorMessage;
@@ -23,6 +24,14 @@ public class InputViewProxy implements InputView {
         return exceptionHandler.reInput(
                 view::inputVisitDate,
                 toReInputMessageFormat(InputErrorMessage.VISIT_DATE_ERROR)
+        );
+    }
+
+    @Override
+    public OrderRequest inputOrderRequest() {
+        return exceptionHandler.reInput(
+                view::inputOrderRequest,
+                toReInputMessageFormat(InputErrorMessage.ORDER_ERROR)
         );
     }
 
