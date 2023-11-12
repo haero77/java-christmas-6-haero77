@@ -14,7 +14,7 @@ public class GiftManager {
         this.totalOrderAmount = totalOrderAmount;
     }
 
-    public GiftMenu applyBenefit() {
+    public GiftMenu apply() {
         if (meetsMinOrderAmountCriterion()) {
             return DEFAULT_GIFT_MENU;
         }

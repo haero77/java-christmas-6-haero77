@@ -17,7 +17,7 @@ class GiftManagerTest {
         GiftManager manager = new GiftManager(new TotalOrderAmount(120_000));
 
         // when
-        GiftMenu giftMenu = manager.applyBenefit();
+        GiftMenu giftMenu = manager.apply();
 
         // then
         assertThat(giftMenu.getType()).isEqualTo(GiftMenuType.CHAMPAGNE);
@@ -32,7 +32,7 @@ class GiftManagerTest {
         GiftManager manager = new GiftManager(new TotalOrderAmount(amount));
 
         // when
-        GiftMenu giftMenu = manager.applyBenefit();
+        GiftMenu giftMenu = manager.apply();
 
         // then
         assertThat(giftMenu.getType()).isEqualTo(GiftMenuType.NONE);
