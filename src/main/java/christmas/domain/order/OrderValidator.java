@@ -1,8 +1,8 @@
 package christmas.domain.order;
 
-import christmas.domain.order.menu.Menu;
-import christmas.domain.order.menu.MenuBoard;
-import christmas.domain.order.menu.MenuName;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.MenuBoard;
+import christmas.domain.menu.MenuName;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;

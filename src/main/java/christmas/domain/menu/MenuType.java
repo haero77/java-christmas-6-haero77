@@ -1,4 +1,4 @@
-package christmas.domain.order.menu;
+package christmas.domain.menu;
 
 public enum MenuType {
 

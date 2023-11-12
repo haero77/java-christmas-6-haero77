@@ -1,6 +1,6 @@
 package christmas.domain.order;
 
-import christmas.domain.order.menu.MenuBoard;
+import christmas.domain.menu.MenuBoard;
 
 public class OrderManager {
 

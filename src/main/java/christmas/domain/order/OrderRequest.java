@@ -1,7 +1,7 @@
 package christmas.domain.order;
 
-import christmas.domain.order.menu.MenuBoard;
-import christmas.domain.order.menu.MenuName;
+import christmas.domain.menu.MenuBoard;
+import christmas.domain.menu.MenuName;
 import java.util.List;
 
 public class OrderRequest {

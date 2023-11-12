@@ -1,4 +1,4 @@
-package christmas.domain.order.menu;
+package christmas.domain.menu;
 
 import java.util.Objects;
 
@@ -25,6 +25,13 @@ public class MenuName {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "MenuName{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
 }

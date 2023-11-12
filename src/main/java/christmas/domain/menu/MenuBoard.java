@@ -1,4 +1,4 @@
-package christmas.domain.order.menu;
+package christmas.domain.menu;
 
 import java.util.Arrays;
 import java.util.HashSet;
