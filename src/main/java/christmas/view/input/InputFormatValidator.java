@@ -43,17 +43,24 @@ public class InputFormatValidator {
     }
 
     private static void validateHyphenFormat(String rawInput) {
-        List<String[]> splitByHyphen = StringConverter.spiltWith(rawInput, COMMA.getLiteral())
-                .stream()
-                .map(literal -> literal.split(HYPHEN.getLiteral()))
-                .toList();
+        List<String[]> splitByHyphen = toOrderRequestInputFormat(rawInput);
+
+        int menuNameIndex = 0;
+        int orderCountIndex = 1;
 
         splitByHyphen.forEach(literals -> {
             validateLiteralArraySize(literals, 2);
-            StringValidator.validateNotEmpty(literals[0]);
-            StringValidator.validateNotEmpty(literals[1]);
-            StringValidator.validateInteger(literals[1]);
+            StringValidator.validateNotEmpty(literals[menuNameIndex]);
+            StringValidator.validateNotEmpty(literals[orderCountIndex]);
+            StringValidator.validateInteger(literals[orderCountIndex]);
         });
+    }
+
+    private static List<String[]> toOrderRequestInputFormat(String rawInput) {
+        return StringConverter.spiltWith(rawInput, COMMA.getLiteral())
+                .stream()
+                .map(literal -> literal.split(HYPHEN.getLiteral()))
+                .toList();
     }
 
     private static void validateLiteralArraySize(String[] literals, int size) {
