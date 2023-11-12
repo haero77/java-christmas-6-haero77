@@ -18,4 +18,8 @@ public class GiftMenu {
         return count;
     }
 
+    public long getMenuPrice() {
+        return (long) this.type.getMenuPrice() * count;
+    }
+
 }
