@@ -26,4 +26,8 @@ public class VisitDate {
         return date >= MIN_ORDER_DATE && date <= MAX_ORDER_DATE;
     }
 
+    public int getDate() {
+        return date;
+    }
+
 }
