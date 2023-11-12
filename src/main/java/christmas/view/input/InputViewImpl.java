@@ -4,7 +4,6 @@ import static christmas.view.constant.CharacterSymbol.COMMA;
 import static christmas.view.constant.CharacterSymbol.HYPHEN;
 
 import christmas.domain.order.OrderRequest;
-import christmas.domain.order.VisitDate;
 import christmas.utils.convert.StringConverter;
 import christmas.view.print.Printer;
 import christmas.view.read.Reader;
@@ -21,13 +20,13 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public VisitDate inputVisitDate() {
+    public int inputVisitDate() {
         printer.printLine(InputGuideMessage.VISIT_DATE_INPUT_GUIDE.getMessage());
         String rawInput = reader.readLine();
 
         InputFormatValidator.validateVisitDateFormat(rawInput);
 
-        return VisitDate.from(Integer.parseInt(rawInput));
+        return Integer.parseInt(rawInput);
     }
 
     @Override
