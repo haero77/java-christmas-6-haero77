@@ -6,9 +6,6 @@ import java.util.List;
 
 public class SpecialDiscountPolicy implements DiscountPolicy {
 
-    /*- [ ] 기간: 이벤트 달력에 별이 있는 날(3, 10, 17, 24, 31, 25일)
-  - [ ] 방식: 총주문 금액에서 1,000원 할인*/
-
     private static final List<LocalDate> DISCOUNT_DATES = List.of(
             LocalDate.of(2023, 12, 3),
             LocalDate.of(2023, 12, 10),
