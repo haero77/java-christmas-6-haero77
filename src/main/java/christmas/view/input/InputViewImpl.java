@@ -27,6 +27,7 @@ public class InputViewImpl implements InputView {
     }
 
     private void validateVisitDate(String rawInput) {
+        StringValidator.validateNotEmpty(rawInput, InputErrorMessage.VISIT_DATE_ERROR);
         StringValidator.validateInteger(rawInput, InputErrorMessage.VISIT_DATE_ERROR);
     }
 
