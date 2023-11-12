@@ -2,6 +2,7 @@ package christmas.domain.event;
 
 import christmas.domain.menu.MenuType;
 import christmas.domain.order.Order;
+import christmas.domain.order.TotalOrderAmount;
 import java.time.DayOfWeek;
 import java.util.Objects;
 
@@ -28,6 +29,10 @@ public class Reservation {
 
     public DayOfWeek getVisitDayOfWeek() {
         return this.date.getDayOfWeek();
+    }
+
+    public TotalOrderAmount getTotalOrderAmount() {
+        return this.order.getTotalOrderAmount();
     }
 
 }

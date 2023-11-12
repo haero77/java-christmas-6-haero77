@@ -44,4 +44,8 @@ public class OrderCount {
         return Objects.hash(count);
     }
 
+    public int getCount() {
+        return count;
+    }
+
 }

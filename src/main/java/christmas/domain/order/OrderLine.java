@@ -16,4 +16,8 @@ public class OrderLine {
         return menu;
     }
 
+    public int getOrderAmount() {
+        return menu.getPrice() * count.getCount();
+    }
+
 }

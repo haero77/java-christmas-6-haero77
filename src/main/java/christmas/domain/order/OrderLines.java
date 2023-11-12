@@ -26,4 +26,14 @@ public class OrderLines {
                 .count();
     }
 
+    public TotalOrderAmount getTotalOrderAmount() {
+        return new TotalOrderAmount(calculateTotalOrderAmount());
+    }
+
+    private int calculateTotalOrderAmount() {
+        return this.lines.stream()
+                .mapToInt(OrderLine::getOrderAmount)
+                .sum();
+    }
+
 }

@@ -23,4 +23,8 @@ public class Order {
         return this.orderLines.getMenuCountByType(type);
     }
 
+    public TotalOrderAmount getTotalOrderAmount() {
+        return orderLines.getTotalOrderAmount();
+    }
+
 }
