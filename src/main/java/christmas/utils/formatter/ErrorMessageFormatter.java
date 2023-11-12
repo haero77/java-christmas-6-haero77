@@ -9,7 +9,7 @@ public class ErrorMessageFormatter {
     private ErrorMessageFormatter() {
     }
 
-    public static String format(String message) {
+    public static String addErrorPrefix(String message) {
         return ERROR_PREFIX + BLANK.getLiteral() + message;
     }
 

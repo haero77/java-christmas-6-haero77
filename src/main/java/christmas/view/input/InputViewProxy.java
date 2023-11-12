@@ -1,7 +1,11 @@
 package christmas.view.input;
 
 
+import static christmas.view.constant.CharacterSymbol.BLANK;
+
 import christmas.domain.order.VisitDate;
+import christmas.utils.formatter.ErrorMessageFormatter;
+import christmas.view.input.error.InputErrorMessage;
 import christmas.view.input.error.InputExceptionHandler;
 
 public class InputViewProxy implements InputView {
@@ -16,7 +20,14 @@ public class InputViewProxy implements InputView {
 
     @Override
     public VisitDate inputVisitDate() {
-        return exceptionHandler.handle(view::inputVisitDate);
+        return exceptionHandler.reInput(
+                view::inputVisitDate,
+                toReInputMessageFormat(InputErrorMessage.VISIT_DATE_ERROR)
+        );
+    }
+
+    private String toReInputMessageFormat(String message) {
+        return ErrorMessageFormatter.addErrorPrefix(message) + BLANK.getLiteral() + InputErrorMessage.RE_INPUT;
     }
 
 }

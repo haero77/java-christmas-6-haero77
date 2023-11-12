@@ -1,6 +1,5 @@
 package christmas.view.input.error;
 
-import christmas.utils.formatter.ErrorMessageFormatter;
 import christmas.view.print.Printer;
 import java.util.function.Supplier;
 
@@ -12,12 +11,12 @@ public class InputExceptionHandler {
         this.printer = printer;
     }
 
-    public <T> T handle(Supplier<T> supplier) {
+    public <T> T reInput(Supplier<T> supplier, String errorMessage) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            printer.printLine(ErrorMessageFormatter.format(e.getMessage()));
-            return handle(supplier);
+            printer.printLine(errorMessage);
+            return reInput(supplier, errorMessage);
         }
     }
 
