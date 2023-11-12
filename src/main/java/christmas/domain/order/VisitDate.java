@@ -18,7 +18,7 @@ public class VisitDate {
 
     private static void validateDateRange(int date) {
         if (!meetsDateRangeCriterion(date)) {
-            throw new IllegalArgumentException("유효하지 않은 날짜입니다.");
+            throw new IllegalArgumentException("date %d is in invalidate date range.".formatted(date));
         }
     }
 
