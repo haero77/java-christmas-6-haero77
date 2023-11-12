@@ -5,7 +5,6 @@ import static christmas.view.constant.CharacterSymbol.HYPHEN;
 
 import christmas.utils.convert.StringConverter;
 import christmas.utils.validator.StringValidator;
-import christmas.view.input.error.InputErrorMessage;
 import java.util.List;
 
 public class InputFormatValidator {
@@ -14,12 +13,12 @@ public class InputFormatValidator {
     }
 
     public static void validateVisitDateFormat(String rawInput) {
-        StringValidator.validateNotEmpty(rawInput, InputErrorMessage.VISIT_DATE_ERROR);
-        StringValidator.validateInteger(rawInput, InputErrorMessage.VISIT_DATE_ERROR);
+        StringValidator.validateNotEmpty(rawInput);
+        StringValidator.validateInteger(rawInput);
     }
 
     public static void validateOrderRequestInputFormat(String rawInput) {
-        StringValidator.validateNotEmpty(rawInput, InputErrorMessage.ORDER_ERROR);
+        StringValidator.validateNotEmpty(rawInput);
         validateNotStartOrEndsWithComma(rawInput);
         validateCommaFormat(rawInput);
         validateHyphenFormat(rawInput);
@@ -31,15 +30,15 @@ public class InputFormatValidator {
         List<String> splitByComma = StringConverter.spiltWith(rawInput, COMMA.getLiteral());
 
         if (splitByComma.isEmpty()) {
-            throw new IllegalArgumentException(InputErrorMessage.ORDER_ERROR);
+            throw new IllegalArgumentException("String %s is invalid Order Request Format");
         }
 
-        splitByComma.forEach(literal -> StringValidator.validateNotEmpty(literal, InputErrorMessage.ORDER_ERROR));
+        splitByComma.forEach(StringValidator::validateNotEmpty);
     }
 
     private static void validateNotStartOrEndsWithComma(String rawInput) {
         if (rawInput.startsWith(COMMA.getLiteral()) || rawInput.endsWith(COMMA.getLiteral())) {
-            throw new IllegalArgumentException(InputErrorMessage.ORDER_ERROR);
+            throw new IllegalArgumentException("String %s is start or end with COMMA".formatted(rawInput));
         }
     }
 
@@ -59,7 +58,7 @@ public class InputFormatValidator {
 
     private static void validateLiteralArraySize(String[] literals, int size) {
         if (literals.length != size) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("size not match.");
         }
     }
 

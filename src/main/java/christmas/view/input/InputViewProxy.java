@@ -23,7 +23,7 @@ public class InputViewProxy implements InputView {
     public VisitDate inputVisitDate() {
         return exceptionHandler.reInput(
                 view::inputVisitDate,
-                toReInputMessageFormat(InputErrorMessage.VISIT_DATE_ERROR)
+                ReInputMessageFormatter.formatWithErrorPrefix(DomainErrorMessage.VISIT_DATE_ERROR)
         );
     }
 
@@ -31,12 +31,8 @@ public class InputViewProxy implements InputView {
     public OrderRequest inputOrderRequest() {
         return exceptionHandler.reInput(
                 view::inputOrderRequest,
-                toReInputMessageFormat(InputErrorMessage.ORDER_ERROR)
+                ReInputMessageFormatter.formatWithErrorPrefix(DomainErrorMessage.ORDER_ERROR)
         );
-    }
-
-    private String toReInputMessageFormat(String message) {
-        return ErrorMessageFormatter.addErrorPrefix(message) + BLANK.getLiteral() + InputErrorMessage.RE_INPUT;
     }
 
 }
