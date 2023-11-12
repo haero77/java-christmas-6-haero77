@@ -23,9 +23,9 @@ public class WeekendsDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountAmount discount() {
         if (meetsDayRangeCriterion()) {
-            return DiscountAmount.from(calculateDiscountAmount());
+            return new DiscountAmount(calculateDiscountAmount());
         }
-        return DiscountAmount.from(0);
+        return new DiscountAmount(0);
     }
 
     private boolean meetsDayRangeCriterion() {

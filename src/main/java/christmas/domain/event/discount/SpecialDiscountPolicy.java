@@ -26,9 +26,9 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountAmount discount() {
         if (meetsDateRangeCriterion()) {
-            return DiscountAmount.from(DEFAULT_DISCOUNT_AMOUNT);
+            return new DiscountAmount(DEFAULT_DISCOUNT_AMOUNT);
         }
-        return DiscountAmount.from(0);
+        return new DiscountAmount(0);
     }
 
     private boolean meetsDateRangeCriterion() {

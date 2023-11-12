@@ -1,15 +1,11 @@
 package christmas.domain.order;
 
-public class TotalOrderAmount {
+import christmas.domain.common.Amount;
 
-    private final int amount;
+public class TotalOrderAmount extends Amount {
 
     public TotalOrderAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public boolean isGreaterOrEqualThan(int amount) {
-        return this.amount >= amount;
+        super(amount);
     }
 
 }
