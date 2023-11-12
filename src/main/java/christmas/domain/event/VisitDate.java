@@ -1,4 +1,4 @@
-package christmas.domain.order;
+package christmas.domain.event;
 
 public class VisitDate {
 

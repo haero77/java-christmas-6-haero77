@@ -2,6 +2,7 @@ package christmas.domain.order;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import christmas.domain.event.VisitDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
