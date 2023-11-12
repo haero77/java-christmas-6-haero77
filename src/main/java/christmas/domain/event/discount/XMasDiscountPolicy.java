@@ -20,10 +20,10 @@ public class XMasDiscountPolicy implements DiscountPolicy {
 
     @Override
     public DiscountAmount discount() {
-        if (!meetsDateRange(reservation.getVisitDate())) {
-            return DiscountAmount.from(0);
+        if (meetsDateRange(reservation.getVisitDate())) {
+            return DiscountAmount.from(calculateDiscountAmount());
         }
-        return DiscountAmount.from(calculateDiscountAmount());
+        return DiscountAmount.from(0);
     }
 
     private int calculateDiscountAmount() {

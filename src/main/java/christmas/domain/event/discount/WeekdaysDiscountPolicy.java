@@ -25,10 +25,10 @@ public class WeekdaysDiscountPolicy implements DiscountPolicy {
 
     @Override
     public DiscountAmount discount() {
-        if (!meetsDayRangeCriterion()) {
-            return DiscountAmount.from(0);
+        if (meetsDayRangeCriterion()) {
+            return DiscountAmount.from(calculateDiscountAmount());
         }
-        return DiscountAmount.from(calculateDiscountAmount());
+        return DiscountAmount.from(0);
     }
 
     private boolean meetsDayRangeCriterion() {
