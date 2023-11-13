@@ -1,5 +1,6 @@
 package christmas.view.output;
 
+import christmas.domain.event.benefit.TotalBenefit;
 import christmas.view.input.utils.ReInputMessageFormatter;
 import christmas.view.print.Printer;
 
@@ -19,6 +20,10 @@ public class OutputView {
 
     public void showErrorMessageWithReInput(String message) {
         printer.printLine(ReInputMessageFormatter.formatWithErrorPrefix(message));
+    }
+
+    public void showTotalBenefit(TotalBenefit totalBenefit) {
+        printer.printLine(formatter.toTotalBenefitPreview(totalBenefit.getVisitDate()));
     }
 
 }

@@ -15,4 +15,8 @@ public class TotalBenefit {
         this.badgeRank = badgeRank;
     }
 
+    public int getVisitDate() {
+        return reservation.getVisitDate();
+    }
+
 }
