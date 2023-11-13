@@ -28,6 +28,9 @@ public class OutputView {
 
         printer.printLine(formatter.toOrderDetail(totalBenefit.getOrder()));
         printer.printEmptyLine();
+
+        printer.printLine(formatter.toTotalOrderAmount(totalBenefit.getOrder()));
+        printer.printEmptyLine();
     }
 
 }

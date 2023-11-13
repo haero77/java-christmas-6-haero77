@@ -1,6 +1,5 @@
 package christmas.view.output;
 
-import static christmas.view.constant.CharacterSymbol.NEW_LINE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.menu.Menu;
@@ -15,6 +14,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputFormatterTest {
+
+    private static final Order ORDER = new Order(new OrderLines(List.of(
+            new OrderLine(new Menu(MenuType.MAIN, new MenuName("티본스테이크"), 55000), OrderCount.from(1)),
+            new OrderLine(new Menu(MenuType.MAIN, new MenuName("바비큐립"), 54000), OrderCount.from(1)),
+            new OrderLine(new Menu(MenuType.APPETIZER, new MenuName("초코케이크"), 15000), OrderCount.from(2)),
+            new OrderLine(new Menu(MenuType.BEVERAGE, new MenuName("제로콜라"), 3000), OrderCount.from(1)))
+    ));
 
     private final OutputFormatter formatter = new OutputFormatter();
 
@@ -48,6 +54,20 @@ class OutputFormatterTest {
                 "<주문 메뉴>" + System.lineSeparator()
                         + "타파스 1개" + System.lineSeparator()
                         + "제로콜라 1개"
+        );
+    }
+
+    @DisplayName("할인 전 총주문 금액 출력 포맷 검증")
+    @Test
+    void toTotalOrderAmount() {
+        // given
+        // when
+        String result = formatter.toTotalOrderAmount(ORDER);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <할인 전 총주문 금액>
+                142,000원"""
         );
     }
 
