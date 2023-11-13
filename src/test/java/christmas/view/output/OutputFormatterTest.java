@@ -2,6 +2,13 @@ package christmas.view.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.event.Reservation;
+import christmas.domain.event.VisitDate;
+import christmas.domain.event.benefit.BenefitDetails;
+import christmas.domain.event.benefit.TotalBenefit;
+import christmas.domain.event.benefit.TotalBenefitAmount;
+import christmas.domain.event.gift.GiftMenu;
+import christmas.domain.event.gift.GiftMenuType;
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.MenuName;
 import christmas.domain.menu.MenuType;
@@ -68,6 +75,38 @@ class OutputFormatterTest {
         assertThat(result).isEqualTo("""
                 <할인 전 총주문 금액>
                 142,000원"""
+        );
+    }
+
+    @DisplayName("증정 메뉴 출력 포맷 - 메뉴 존재")
+    @Test
+    void toGiftMenu() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(null, new GiftMenu(GiftMenuType.CHAMPAGNE, 1));
+
+        // when
+        String result = formatter.formatGiftMenu(benefitDetails);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <증정 메뉴>
+                샴페인 1개"""
+        );
+    }
+
+    @DisplayName("증정 메뉴 출력 포맷 - 메뉴 없음")
+    @Test
+    void toGiftMenu_none() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(null, new GiftMenu(GiftMenuType.NONE, 0));
+
+        // when
+        String result = formatter.formatGiftMenu(benefitDetails);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <증정 메뉴>
+                없음"""
         );
     }
 

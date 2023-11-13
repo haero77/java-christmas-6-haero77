@@ -22,4 +22,12 @@ public class BenefitDetails {
         return ExpectedPayment.ofAmount(totalOrderAmount.getAmount() - discountDetails.calculateTotalDiscountAmount());
     }
 
+    public DiscountDetails getDiscountDetails() {
+        return discountDetails;
+    }
+
+    public GiftMenu getGiftMenu() {
+        return giftMenu;
+    }
+
 }

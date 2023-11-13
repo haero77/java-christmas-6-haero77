@@ -21,4 +21,8 @@ public enum GiftMenuType {
         return menuPrice;
     }
 
+    public boolean isNone() {
+        return this == NONE;
+    }
+
 }

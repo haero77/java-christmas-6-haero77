@@ -18,6 +18,14 @@ public class GiftMenu {
         return count;
     }
 
+    public boolean hasGift() {
+        return !type.isNone();
+    }
+
+    public String getMenuName() {
+        return type.getDescription();
+    }
+
     public long getMenuPrice() {
         return (long) this.type.getMenuPrice() * count;
     }

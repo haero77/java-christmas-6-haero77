@@ -7,12 +7,12 @@ import christmas.domain.order.Order;
 public class TotalBenefit {
 
     private final Reservation reservation;
-    private final BenefitDetails details;
+    private final BenefitDetails benefitDetails;
     private final BadgeRank badgeRank;
 
-    public TotalBenefit(Reservation reservation, BenefitDetails details, BadgeRank badgeRank) {
+    public TotalBenefit(Reservation reservation, BenefitDetails benefitDetails, BadgeRank badgeRank) {
         this.reservation = reservation;
-        this.details = details;
+        this.benefitDetails = benefitDetails;
         this.badgeRank = badgeRank;
     }
 
@@ -22,6 +22,10 @@ public class TotalBenefit {
 
     public Order getOrder() {
         return reservation.getOrder();
+    }
+
+    public BenefitDetails getBenefitDetails() {
+        return benefitDetails;
     }
 
 }
