@@ -20,11 +20,11 @@ public class OutputFormatter {
     private static final DecimalFormat AMOUNT_DIGIT_FORMAT = new DecimalFormat("###,###");
     private static final String AMOUNT_SUFFIX = "원";
 
-    public String toTotalBenefitPreview(int visitDate) {
+    public String formatTotalBenefitPreview(int visitDate) {
         return BENEFIT_PREVIEW_FORMAT.formatted(visitDate);
     }
 
-    public String toOrderDetail(Order order) {
+    public String formatOrderDetail(Order order) {
         return new StringBuilder()
                 .append(MENU_DETAIL_GUIDE)
                 .append(NEW_LINE)
@@ -41,7 +41,7 @@ public class OutputFormatter {
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    public String toTotalOrderAmount(Order order) {
+    public String formatTotalOrderAmount(Order order) {
         return new StringBuilder()
                 .append(TOTAL_ORDER_AMOUNT_GUIDE)
                 .append(NEW_LINE)

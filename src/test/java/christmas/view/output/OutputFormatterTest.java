@@ -26,12 +26,12 @@ class OutputFormatterTest {
 
     @DisplayName("혜택 미리 보기 출력 문자열 포맷 검증")
     @Test
-    void toTotalBenefitPreviewGuide() {
+    void benefitPreviewGuide() {
         // given
         int visitDate = 26;
 
         // when
-        String result = formatter.toTotalBenefitPreview(visitDate);
+        String result = formatter.formatTotalBenefitPreview(visitDate);
 
         // then
         assertThat(result).isEqualTo("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
@@ -39,7 +39,7 @@ class OutputFormatterTest {
 
     @DisplayName("주문 메뉴 상세 출력 포맷 검증")
     @Test
-    void toOrderMenuDetails() {
+    void orderMenuDetails() {
         // given
         Order order = new Order(new OrderLines(List.of(
                 new OrderLine(new Menu(MenuType.APPETIZER, new MenuName("타파스"), 1000), OrderCount.from(1)),
@@ -47,7 +47,7 @@ class OutputFormatterTest {
         ));
 
         // when
-        String result = formatter.toOrderDetail(order);
+        String result = formatter.formatOrderDetail(order);
 
         // then
         assertThat(result).isEqualTo(
@@ -59,10 +59,10 @@ class OutputFormatterTest {
 
     @DisplayName("할인 전 총주문 금액 출력 포맷 검증")
     @Test
-    void toTotalOrderAmount() {
+    void totalOrderAmount() {
         // given
         // when
-        String result = formatter.toTotalOrderAmount(ORDER);
+        String result = formatter.formatTotalOrderAmount(ORDER);
 
         // then
         assertThat(result).isEqualTo("""
