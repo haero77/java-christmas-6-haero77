@@ -5,6 +5,7 @@ public enum CharacterSymbol {
     HYPHEN("-"),
     BLANK(" "),
     COMMA(","),
+    COLON(":"),
     EMPTY("");
 
     private final String literal;

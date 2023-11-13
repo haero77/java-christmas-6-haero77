@@ -1,6 +1,7 @@
 package christmas.domain.event.discount;
 
 import christmas.domain.common.Amount;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class DiscountDetails {
@@ -16,6 +17,10 @@ public class DiscountDetails {
                 .stream()
                 .mapToLong(Amount::getAmount)
                 .sum();
+    }
+
+    public Map<DiscountType, DiscountAmount> getDiscountAmounts() {
+        return Map.copyOf(discountAmounts);
     }
 
 }

@@ -25,4 +25,8 @@ public abstract class Amount {
         return amount;
     }
 
+    public boolean isAmountZero() {
+        return amount == 0L;
+    }
+
 }

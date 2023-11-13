@@ -2,11 +2,10 @@ package christmas.view.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.domain.event.Reservation;
-import christmas.domain.event.VisitDate;
 import christmas.domain.event.benefit.BenefitDetails;
-import christmas.domain.event.benefit.TotalBenefit;
-import christmas.domain.event.benefit.TotalBenefitAmount;
+import christmas.domain.event.discount.DiscountAmount;
+import christmas.domain.event.discount.DiscountDetails;
+import christmas.domain.event.discount.DiscountType;
 import christmas.domain.event.gift.GiftMenu;
 import christmas.domain.event.gift.GiftMenuType;
 import christmas.domain.menu.Menu;
@@ -17,6 +16,7 @@ import christmas.domain.order.OrderCount;
 import christmas.domain.order.OrderLine;
 import christmas.domain.order.OrderLines;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -107,6 +107,33 @@ class OutputFormatterTest {
         assertThat(result).isEqualTo("""
                 <증정 메뉴>
                 없음"""
+        );
+    }
+
+    @DisplayName("혜택 내역 출력 포맷 - 혜택 O")
+    @Test
+    void benefitDetails() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 1200),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 4046),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 1000)
+                )),
+                new GiftMenu(GiftMenuType.CHAMPAGNE, 1)
+        );
+
+        // when
+        String result = formatter.formatBenefitDetails(benefitDetails);
+
+        // then
+        assertThat(result).contains("""
+                <혜택 내역>
+                크리스마스 디데이 할인: -1,200원
+                평일 할인: -4,046원
+                특별 할인: -1,000원
+                증정 이벤트: -25,000원"""
         );
     }
 
