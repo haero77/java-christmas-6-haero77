@@ -2,6 +2,7 @@ package christmas.domain.event.benefit;
 
 import christmas.domain.event.Reservation;
 import christmas.domain.event.badge.BadgeRank;
+import christmas.domain.order.Order;
 
 public class TotalBenefit {
 
@@ -17,6 +18,10 @@ public class TotalBenefit {
 
     public int getVisitDate() {
         return reservation.getVisitDate();
+    }
+
+    public Order getOrder() {
+        return reservation.getOrder();
     }
 
 }

@@ -24,6 +24,10 @@ public class OutputView {
 
     public void showTotalBenefit(TotalBenefit totalBenefit) {
         printer.printLine(formatter.toTotalBenefitPreview(totalBenefit.getVisitDate()));
+        printer.printEmptyLine();
+
+        printer.printLine(formatter.toOrderDetail(totalBenefit.getOrder()));
+        printer.printEmptyLine();
     }
 
 }

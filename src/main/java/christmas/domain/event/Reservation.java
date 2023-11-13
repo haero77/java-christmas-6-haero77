@@ -35,4 +35,8 @@ public class Reservation {
         return this.order.getTotalOrderAmount();
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
 }
