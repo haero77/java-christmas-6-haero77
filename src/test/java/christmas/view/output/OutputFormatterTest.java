@@ -161,4 +161,52 @@ class OutputFormatterTest {
         );
     }
 
+    @DisplayName("총혜택 금액 출력 포맷 - 금액 0원 초과")
+    @Test
+    void totalBenefitAmount_over_0() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 1200),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 4046),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 1000)
+                )),
+                new GiftMenu(GiftMenuType.CHAMPAGNE, 1)
+        );
+
+        // when
+        String result = formatter.formatTotalBenefitAmount(benefitDetails);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <총혜택 금액>
+                -31,246원"""
+        );
+    }
+
+    @DisplayName("총혜택 금액 출력 포맷 - 금액 0원")
+    @Test
+    void totalBenefitAmount_0() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 0),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 0),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 0)
+                )),
+                new GiftMenu(GiftMenuType.NONE, 0)
+        );
+
+        // when
+        String result = formatter.formatTotalBenefitAmount(benefitDetails);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <총혜택 금액>
+                0원"""
+        );
+    }
+
 }

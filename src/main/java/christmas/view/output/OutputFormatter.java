@@ -27,6 +27,7 @@ public class OutputFormatter {
     private static final String TOTAL_ORDER_AMOUNT_GUIDE = "<할인 전 총주문 금액>";
     private static final String GIFT_MENU_GUIDE = "<증정 메뉴>";
     public static final String BENEFIT_DETAIL_GUIDE = "<혜택 내역>";
+    public static final String TOTAL_BENEFIT_AMOUNT_GUIDE = "<총혜택 금액>";
 
     private static final String GIFT_EVENT = "증정 이벤트";
 
@@ -69,6 +70,9 @@ public class OutputFormatter {
     }
 
     private String toBenefitAmountFormat(long amount) {
+        if (amount == 0) {
+            return toAmountFormat(amount);
+        }
         return HYPHEN.getLiteral() + toAmountFormat(amount);
     }
 
@@ -125,6 +129,14 @@ public class OutputFormatter {
         return description
                 + CharacterSymbol.COLON.getLiteral() + BLANK.getLiteral()
                 + toBenefitAmountFormat(amount);
+    }
+
+    public String formatTotalBenefitAmount(BenefitDetails benefitDetails) {
+        return new StringBuilder()
+                .append(TOTAL_BENEFIT_AMOUNT_GUIDE)
+                .append(NEW_LINE)
+                .append(toBenefitAmountFormat(benefitDetails.getTotalBenefitAmount().getAmount()))
+                .toString();
     }
 
 }
