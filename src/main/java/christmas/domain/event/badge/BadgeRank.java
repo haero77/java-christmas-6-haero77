@@ -35,4 +35,8 @@ public enum BadgeRank {
         return minTotalDiscountAmount;
     }
 
+    public boolean isNone() {
+        return this == NONE;
+    }
+
 }

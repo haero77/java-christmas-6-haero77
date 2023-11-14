@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.event.Reservation;
 import christmas.domain.event.VisitDate;
+import christmas.domain.event.badge.BadgeRank;
 import christmas.domain.event.benefit.BenefitDetails;
 import christmas.domain.event.discount.DiscountAmount;
 import christmas.domain.event.discount.DiscountDetails;
@@ -262,6 +263,36 @@ class OutputFormatterTest {
         assertThat(result).isEqualTo("""
                 <할인 후 예상 결제 금액>
                 8,500원""");
+    }
+
+    @DisplayName("12월 이벤트 배지 - 배지 X")
+    @Test
+    void badgeRank_none() {
+        // given
+        BadgeRank rank = BadgeRank.NONE;
+
+        // when
+        String result = formatter.formatBadgeRank(rank);
+        
+        // then
+        assertThat(result).isEqualTo("""
+                <12월 이벤트 배지>
+                없음""");
+    }
+
+    @DisplayName("12월 이벤트 배지 - 배지 O")
+    @Test
+    void badgeRank_exists() {
+        // given
+        BadgeRank rank = BadgeRank.SANTA;
+
+        // when
+        String result = formatter.formatBadgeRank(rank);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <12월 이벤트 배지>
+                산타""");
     }
 
 }

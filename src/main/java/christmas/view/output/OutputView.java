@@ -43,6 +43,8 @@ public class OutputView {
 
         printer.printLine(formatter.formatExpectedPayment(totalBenefit.getBenefitDetails(), totalBenefit.getReservation()));
         printer.printEmptyLine();
+
+        printer.printLine(formatter.formatBadgeRank(totalBenefit.getBadgeRank()));
     }
 
 }

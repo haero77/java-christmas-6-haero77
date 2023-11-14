@@ -4,6 +4,7 @@ import static christmas.view.constant.CharacterSymbol.BLANK;
 import static christmas.view.constant.CharacterSymbol.HYPHEN;
 
 import christmas.domain.event.Reservation;
+import christmas.domain.event.badge.BadgeRank;
 import christmas.domain.event.benefit.BenefitDetails;
 import christmas.domain.event.discount.DiscountAmount;
 import christmas.domain.event.discount.DiscountType;
@@ -37,6 +38,7 @@ public class OutputFormatter {
 
     private static final DecimalFormat AMOUNT_DIGIT_FORMAT = new DecimalFormat("###,###");
     private static final String AMOUNT_SUFFIX = "원";
+    public static final String BADGE_RANK_GUIDE = "<12월 이벤트 배지>";
 
     public String formatTotalBenefitPreview(int visitDate) {
         return BENEFIT_PREVIEW_FORMAT.formatted(visitDate);
@@ -151,6 +153,17 @@ public class OutputFormatter {
 
     private String toExpectedAmountFormat(BenefitDetails benefitDetails, Reservation reservation) {
         return toAmountFormat(benefitDetails.calculateExpectedPayment(reservation.getTotalOrderAmount()).getAmount());
+    }
+
+    public String formatBadgeRank(BadgeRank rank) {
+        return BADGE_RANK_GUIDE + NEW_LINE + toBadgeRankFormat(rank);
+    }
+
+    private String toBadgeRankFormat(BadgeRank rank) {
+        if (rank.isNone()) {
+            return NONE;
+        }
+        return rank.getDescription();
     }
 
 }
