@@ -1,10 +1,13 @@
 package christmas.controller;
 
 import christmas.domain.error.DomainErrorMessage;
+import christmas.domain.event.EventBenefitManager;
+import christmas.domain.event.Reservation;
+import christmas.domain.event.VisitDate;
+import christmas.domain.event.benefit.TotalBenefit;
 import christmas.domain.menu.MenuBoardInitializer;
 import christmas.domain.order.Order;
 import christmas.domain.order.OrderManager;
-import christmas.domain.order.VisitDate;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
 import java.util.function.Supplier;
@@ -25,12 +28,7 @@ public class ChristmasEventController {
         VisitDate visitDate = inputVisitDate();
         Order order = inputOrder();
 
-        // 예약 생성
-        //        Reservation reservation = createReservation();
-
-        // 혜택 계산
-
-        // 혜택 결과 출력
+        outputTotalBenefit(computeTotalBenefit(visitDate, order));
     }
 
     private <T> T process(Supplier<T> supplier, ErrorConsumer consumer) {
@@ -63,6 +61,15 @@ public class ChristmasEventController {
 
     private void welcomeClient() {
         outputView.welcomeClient();
+    }
+
+    private void outputTotalBenefit(TotalBenefit totalBenefit) {
+        outputView.showTotalBenefit(totalBenefit);
+    }
+
+    private TotalBenefit computeTotalBenefit(VisitDate visitDate, Order order) {
+        EventBenefitManager manager = new EventBenefitManager(new Reservation(visitDate, order));
+        return manager.calculateTotalBenefit();
     }
 
 }
