@@ -113,7 +113,7 @@ public class OutputFormatter {
                     GIFT_EVENT, giftMenu.getMenuPrice());
         }
 
-        return discountDetailFormat;
+        return discountDetailFormat + NONE;
     }
 
     private String toBenefitDescriptionAmountFormat(String description, long amount) {

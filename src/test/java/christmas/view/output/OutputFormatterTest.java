@@ -137,4 +137,28 @@ class OutputFormatterTest {
         );
     }
 
+    @DisplayName("혜택 내역 출력 포맷 - 혜택 X")
+    @Test
+    void benefitDetails_none() {
+        // given
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 0),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 0),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 0)
+                )),
+                new GiftMenu(GiftMenuType.NONE, 0)
+        );
+
+        // when
+        String result = formatter.formatBenefitDetails(benefitDetails);
+
+        // then
+        assertThat(result).contains("""
+                <혜택 내역>
+                없음"""
+        );
+    }
+
 }
