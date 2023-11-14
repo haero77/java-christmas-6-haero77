@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class OutputFormatter {
 
-    private static final String NEW_LINE = System.lineSeparator();
+    private static final String NEW_LINE = CharacterSymbol.NEW_LINE.getLiteral();
     private static final String NONE = "없음";
 
     private static final String BENEFIT_PREVIEW_FORMAT = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
@@ -28,17 +28,15 @@ public class OutputFormatter {
     private static final String MENU_DETAIL_GUIDE = "<주문 메뉴>";
     private static final String TOTAL_ORDER_AMOUNT_GUIDE = "<할인 전 총주문 금액>";
     private static final String GIFT_MENU_GUIDE = "<증정 메뉴>";
-    public static final String BENEFIT_DETAIL_GUIDE = "<혜택 내역>";
-    public static final String TOTAL_BENEFIT_AMOUNT_GUIDE = "<총혜택 금액>";
+    private static final String BENEFIT_DETAIL_GUIDE = "<혜택 내역>";
+    private static final String TOTAL_BENEFIT_AMOUNT_GUIDE = "<총혜택 금액>";
     private static final String EXPECTED_PAYMENT_GUIDE = "<할인 후 예상 결제 금액>";
+    private static final String BADGE_RANK_GUIDE = "<12월 이벤트 배지>";
 
-    private static final String GIFT_EVENT = "증정 이벤트";
-
-    private static final String MENU_NAME_COUNT_FORMAT = "%s %d개";
-
-    private static final DecimalFormat AMOUNT_DIGIT_FORMAT = new DecimalFormat("###,###");
     private static final String AMOUNT_SUFFIX = "원";
-    public static final String BADGE_RANK_GUIDE = "<12월 이벤트 배지>";
+    private static final String GIFT_EVENT = "증정 이벤트";
+    private static final String MENU_NAME_COUNT_FORMAT = "%s %d개";
+    private static final DecimalFormat AMOUNT_DIGIT_FORMAT = new DecimalFormat("###,###");
 
     public String formatTotalBenefitPreview(int visitDate) {
         return BENEFIT_PREVIEW_FORMAT.formatted(visitDate);
