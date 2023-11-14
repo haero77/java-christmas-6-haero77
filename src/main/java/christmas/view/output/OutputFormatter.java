@@ -43,11 +43,7 @@ public class OutputFormatter {
     }
 
     public String formatOrderDetail(Order order) {
-        return new StringBuilder()
-                .append(MENU_DETAIL_GUIDE)
-                .append(NEW_LINE)
-                .append(toOrderDetailFormat(order.getOrderLines()))
-                .toString();
+        return MENU_DETAIL_GUIDE + NEW_LINE + toOrderDetailFormat(order.getOrderLines());
     }
 
     private String toOrderDetailFormat(List<OrderLine> orderLines) {
@@ -60,11 +56,7 @@ public class OutputFormatter {
     }
 
     public String formatTotalOrderAmount(Order order) {
-        return new StringBuilder()
-                .append(TOTAL_ORDER_AMOUNT_GUIDE)
-                .append(NEW_LINE)
-                .append(toAmountFormat(order.getTotalOrderAmount().getAmount()))
-                .toString();
+        return TOTAL_ORDER_AMOUNT_GUIDE + NEW_LINE + toAmountFormat(order.getTotalOrderAmount().getAmount());
     }
 
     private String toAmountFormat(long amount) {
@@ -79,11 +71,7 @@ public class OutputFormatter {
     }
 
     public String formatGiftMenu(BenefitDetails benefitDetails) {
-        return new StringBuilder()
-                .append(GIFT_MENU_GUIDE)
-                .append(NEW_LINE)
-                .append(toGiftMenuNameCountFormat(benefitDetails.getGiftMenu()))
-                .toString();
+        return GIFT_MENU_GUIDE + NEW_LINE + toGiftMenuNameCountFormat(benefitDetails.getGiftMenu());
     }
 
     private String toGiftMenuNameCountFormat(GiftMenu giftMenu) {
@@ -94,11 +82,7 @@ public class OutputFormatter {
     }
 
     public String formatBenefitDetails(BenefitDetails benefitDetails) {
-        return new StringBuilder()
-                .append(BENEFIT_DETAIL_GUIDE)
-                .append(NEW_LINE)
-                .append(toBenefitTypeAmountFormat(benefitDetails))
-                .toString();
+        return BENEFIT_DETAIL_GUIDE + NEW_LINE + toBenefitTypeAmountFormat(benefitDetails);
     }
 
     private String toBenefitTypeAmountFormat(BenefitDetails benefitDetails) {
@@ -128,25 +112,17 @@ public class OutputFormatter {
     }
 
     private String toBenefitDescriptionAmountFormat(String description, long amount) {
-        return description
-                + CharacterSymbol.COLON.getLiteral() + BLANK.getLiteral()
-                + toBenefitAmountFormat(amount);
+        return description + CharacterSymbol.COLON.getLiteral() + BLANK.getLiteral() + toBenefitAmountFormat(amount);
     }
 
     public String formatTotalBenefitAmount(BenefitDetails benefitDetails) {
-        return new StringBuilder()
-                .append(TOTAL_BENEFIT_AMOUNT_GUIDE)
-                .append(NEW_LINE)
-                .append(toBenefitAmountFormat(benefitDetails.getTotalBenefitAmount().getAmount()))
-                .toString();
+        return TOTAL_BENEFIT_AMOUNT_GUIDE + NEW_LINE + toBenefitAmountFormat(
+                benefitDetails.getTotalBenefitAmount().getAmount()
+        );
     }
 
     public String formatExpectedPayment(BenefitDetails benefitDetails, Reservation reservation) {
-        return new StringBuilder()
-                .append(EXPECTED_PAYMENT_GUIDE)
-                .append(NEW_LINE)
-                .append(toExpectedAmountFormat(benefitDetails, reservation))
-                .toString();
+        return EXPECTED_PAYMENT_GUIDE + NEW_LINE + toExpectedAmountFormat(benefitDetails, reservation);
     }
 
     private String toExpectedAmountFormat(BenefitDetails benefitDetails, Reservation reservation) {
