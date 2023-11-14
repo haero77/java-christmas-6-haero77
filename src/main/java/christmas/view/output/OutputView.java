@@ -34,6 +34,9 @@ public class OutputView {
 
         printer.printLine(formatter.formatGiftMenu(totalBenefit.getBenefitDetails()));
         printer.printEmptyLine();
+
+        printer.printLine(formatter.formatBenefitDetails(totalBenefit.getBenefitDetails()));
+        printer.printEmptyLine();
     }
 
 }
