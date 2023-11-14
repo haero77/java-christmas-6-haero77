@@ -2,6 +2,8 @@ package christmas.view.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.event.Reservation;
+import christmas.domain.event.VisitDate;
 import christmas.domain.event.benefit.BenefitDetails;
 import christmas.domain.event.discount.DiscountAmount;
 import christmas.domain.event.discount.DiscountDetails;
@@ -207,6 +209,59 @@ class OutputFormatterTest {
                 <총혜택 금액>
                 0원"""
         );
+    }
+
+    @DisplayName("할인 후 예상 결제 금액 - 금액 0원 초과")
+    @Test
+    void expectedPayment_over_0() {
+        // given
+        Reservation reservation = new Reservation(VisitDate.from(3), ORDER);
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 1200),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 4046),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 1000)
+                )),
+                new GiftMenu(GiftMenuType.CHAMPAGNE, 1)
+        );
+
+        // when
+        String result = formatter.formatExpectedPayment(benefitDetails, reservation);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <할인 후 예상 결제 금액>
+                135,754원""");
+    }
+
+    @DisplayName("할인 후 예상 결제 금액 - 혜택 없음")
+    @Test
+    void expectedPayment_no_benefit() {
+        // given
+        Order order = new Order(new OrderLines(List.of(
+                new OrderLine(new Menu(MenuType.APPETIZER, new MenuName("타파스"), 5500), OrderCount.from(1)),
+                new OrderLine(new Menu(MenuType.MAIN, new MenuName("제로콜라"), 3000), OrderCount.from(1)))
+        ));
+
+        Reservation reservation = new Reservation(VisitDate.from(26), order);
+        BenefitDetails benefitDetails = new BenefitDetails(
+                new DiscountDetails(Map.of(
+                        DiscountType.X_MAS, new DiscountAmount(DiscountType.X_MAS, 0),
+                        DiscountType.WEEKDAYS, new DiscountAmount(DiscountType.WEEKDAYS, 0),
+                        DiscountType.WEEKENDS, new DiscountAmount(DiscountType.WEEKENDS, 0),
+                        DiscountType.SPECIAL, new DiscountAmount(DiscountType.SPECIAL, 0)
+                )),
+                new GiftMenu(GiftMenuType.NONE, 0)
+        );
+
+        // when
+        String result = formatter.formatExpectedPayment(benefitDetails, reservation);
+
+        // then
+        assertThat(result).isEqualTo("""
+                <할인 후 예상 결제 금액>
+                8,500원""");
     }
 
 }

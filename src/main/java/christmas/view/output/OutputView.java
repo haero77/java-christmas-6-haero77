@@ -40,6 +40,9 @@ public class OutputView {
 
         printer.printLine(formatter.formatTotalBenefitAmount(totalBenefit.getBenefitDetails()));
         printer.printEmptyLine();
+
+        printer.printLine(formatter.formatExpectedPayment(totalBenefit.getBenefitDetails(), totalBenefit.getReservation()));
+        printer.printEmptyLine();
     }
 
 }

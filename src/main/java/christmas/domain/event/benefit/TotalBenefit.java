@@ -28,4 +28,12 @@ public class TotalBenefit {
         return benefitDetails;
     }
 
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public BadgeRank getBadgeRank() {
+        return badgeRank;
+    }
+
 }

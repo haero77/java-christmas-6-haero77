@@ -3,6 +3,7 @@ package christmas.view.output;
 import static christmas.view.constant.CharacterSymbol.BLANK;
 import static christmas.view.constant.CharacterSymbol.HYPHEN;
 
+import christmas.domain.event.Reservation;
 import christmas.domain.event.benefit.BenefitDetails;
 import christmas.domain.event.discount.DiscountAmount;
 import christmas.domain.event.discount.DiscountType;
@@ -28,6 +29,7 @@ public class OutputFormatter {
     private static final String GIFT_MENU_GUIDE = "<증정 메뉴>";
     public static final String BENEFIT_DETAIL_GUIDE = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_AMOUNT_GUIDE = "<총혜택 금액>";
+    private static final String EXPECTED_PAYMENT_GUIDE = "<할인 후 예상 결제 금액>";
 
     private static final String GIFT_EVENT = "증정 이벤트";
 
@@ -137,6 +139,18 @@ public class OutputFormatter {
                 .append(NEW_LINE)
                 .append(toBenefitAmountFormat(benefitDetails.getTotalBenefitAmount().getAmount()))
                 .toString();
+    }
+
+    public String formatExpectedPayment(BenefitDetails benefitDetails, Reservation reservation) {
+        return new StringBuilder()
+                .append(EXPECTED_PAYMENT_GUIDE)
+                .append(NEW_LINE)
+                .append(toExpectedAmountFormat(benefitDetails, reservation))
+                .toString();
+    }
+
+    private String toExpectedAmountFormat(BenefitDetails benefitDetails, Reservation reservation) {
+        return toAmountFormat(benefitDetails.calculateExpectedPayment(reservation.getTotalOrderAmount()).getAmount());
     }
 
 }
