@@ -14,8 +14,12 @@ public class BenefitDetails {
         this.giftMenu = giftMenu;
     }
 
-    public TotalBenefitAmount calculateTotalBenefitAmount() {
-        return new TotalBenefitAmount(discountDetails.calculateTotalDiscountAmount() + giftMenu.getMenuPrice());
+    public TotalBenefitAmount getTotalBenefitAmount() {
+        return new TotalBenefitAmount(calculateTotalBenefitAmount());
+    }
+
+    private long calculateTotalBenefitAmount() {
+        return discountDetails.calculateTotalDiscountAmount() + giftMenu.getMenuPrice();
     }
 
     public ExpectedPayment calculateExpectedPayment(TotalOrderAmount totalOrderAmount) {

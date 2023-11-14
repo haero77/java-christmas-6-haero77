@@ -31,7 +31,7 @@ class BenefitDetailsTest {
         BenefitDetails benefitDetails = new BenefitDetails(discountDetails, giftMenu);
 
         // when
-        TotalBenefitAmount totalBenefitAmount = benefitDetails.calculateTotalBenefitAmount();
+        TotalBenefitAmount totalBenefitAmount = benefitDetails.getTotalBenefitAmount();
 
         // then
         assertThat(totalBenefitAmount.getAmount()).isEqualTo(10_000L + 25_000L);

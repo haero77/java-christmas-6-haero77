@@ -21,7 +21,7 @@ public class EventBenefitManager {
     public TotalBenefit calculateTotalBenefit() {
         BenefitDetails benefitDetails = applyBenefit();
         return new TotalBenefit(this.reservation, benefitDetails,
-                applyBadgeRank(benefitDetails.calculateTotalBenefitAmount()));
+                applyBadgeRank(benefitDetails.getTotalBenefitAmount()));
     }
 
     private BenefitDetails applyBenefit() {
