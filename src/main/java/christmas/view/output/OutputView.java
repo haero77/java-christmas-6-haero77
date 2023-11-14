@@ -1,5 +1,7 @@
 package christmas.view.output;
 
+import static christmas.view.constant.CharacterSymbol.NEW_LINE;
+
 import christmas.domain.event.benefit.TotalBenefit;
 import christmas.view.input.utils.ReInputMessageFormatter;
 import christmas.view.print.Printer;
@@ -23,28 +25,20 @@ public class OutputView {
     }
 
     public void showTotalBenefit(TotalBenefit totalBenefit) {
-        printer.printLine(formatter.formatTotalBenefitPreview(totalBenefit.getVisitDate()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatOrderDetail(totalBenefit.getOrder()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatTotalOrderAmount(totalBenefit.getOrder()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatGiftMenu(totalBenefit.getBenefitDetails()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatBenefitDetails(totalBenefit.getBenefitDetails()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatTotalBenefitAmount(totalBenefit.getBenefitDetails()));
-        printer.printEmptyLine();
-
-        printer.printLine(formatter.formatExpectedPayment(totalBenefit.getBenefitDetails(), totalBenefit.getReservation()));
-        printer.printEmptyLine();
-
+        printer.printLine(addNewLineSuffix(formatter.formatTotalBenefitPreview(totalBenefit.getVisitDate())));
+        printer.printLine(addNewLineSuffix(formatter.formatOrderDetail(totalBenefit.getOrder())));
+        printer.printLine(addNewLineSuffix(formatter.formatTotalOrderAmount(totalBenefit.getOrder())));
+        printer.printLine(addNewLineSuffix(formatter.formatGiftMenu(totalBenefit.getBenefitDetails())));
+        printer.printLine(addNewLineSuffix(formatter.formatBenefitDetails(totalBenefit.getBenefitDetails())));
+        printer.printLine(addNewLineSuffix(formatter.formatTotalBenefitAmount(totalBenefit.getBenefitDetails())));
+        printer.printLine(addNewLineSuffix(
+                formatter.formatExpectedPayment(totalBenefit.getBenefitDetails(), totalBenefit.getReservation()))
+        );
         printer.printLine(formatter.formatBadgeRank(totalBenefit.getBadgeRank()));
+    }
+
+    private String addNewLineSuffix(String literal) {
+        return literal + NEW_LINE.getLiteral();
     }
 
 }

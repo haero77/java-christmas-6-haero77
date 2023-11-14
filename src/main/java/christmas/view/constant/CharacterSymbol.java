@@ -6,6 +6,7 @@ public enum CharacterSymbol {
     BLANK(" "),
     COMMA(","),
     COLON(":"),
+    NEW_LINE(System.lineSeparator()),
     EMPTY("");
 
     private final String literal;
