@@ -5,7 +5,6 @@ import static christmas.view.constant.CharacterSymbol.HYPHEN;
 
 import christmas.domain.event.benefit.BenefitDetails;
 import christmas.domain.event.discount.DiscountAmount;
-import christmas.domain.event.discount.DiscountDetails;
 import christmas.domain.event.discount.DiscountType;
 import christmas.domain.event.gift.GiftMenu;
 import christmas.domain.order.Order;
@@ -27,6 +26,7 @@ public class OutputFormatter {
     private static final String MENU_DETAIL_GUIDE = "<주문 메뉴>";
     private static final String TOTAL_ORDER_AMOUNT_GUIDE = "<할인 전 총주문 금액>";
     private static final String GIFT_MENU_GUIDE = "<증정 메뉴>";
+    public static final String BENEFIT_DETAIL_GUIDE = "<혜택 내역>";
 
     private static final String GIFT_EVENT = "증정 이벤트";
 
@@ -89,31 +89,36 @@ public class OutputFormatter {
 
     public String formatBenefitDetails(BenefitDetails benefitDetails) {
         return new StringBuilder()
-                .append("<혜택 내역>")
+                .append(BENEFIT_DETAIL_GUIDE)
                 .append(NEW_LINE)
                 .append(toBenefitTypeAmountFormat(benefitDetails))
                 .toString();
     }
 
     private String toBenefitTypeAmountFormat(BenefitDetails benefitDetails) {
-        DiscountDetails discountDetails = benefitDetails.getDiscountDetails();
-        Map<DiscountType, DiscountAmount> discountAmounts = new EnumMap<>(discountDetails.getDiscountAmounts());
+        return addGiftEventSuffix(toDiscountDetailFormat(benefitDetails), benefitDetails.getGiftMenu());
+    }
 
-        String discountDetailFormat = discountAmounts.entrySet()
+    private String addGiftEventSuffix(String discountDetailFormat, GiftMenu giftMenu) {
+        if (giftMenu.hasGift()) {
+            return discountDetailFormat
+                    + NEW_LINE
+                    + toBenefitDescriptionAmountFormat(GIFT_EVENT, giftMenu.getMenuPrice());
+        }
+        return discountDetailFormat + NONE;
+    }
+
+    private String toDiscountDetailFormat(BenefitDetails benefitDetails) {
+        Map<DiscountType, DiscountAmount> discountAmounts = new EnumMap<>(
+                benefitDetails.getDiscountDetails().getDiscountAmounts()
+        );
+        return discountAmounts.entrySet()
                 .stream()
                 .filter(entry -> !entry.getValue().isAmountZero())
                 .map(entry -> toBenefitDescriptionAmountFormat(entry.getKey().getDescription(),
                         entry.getValue().getAmount())
                 )
                 .collect(Collectors.joining(NEW_LINE));
-
-        GiftMenu giftMenu = benefitDetails.getGiftMenu();
-        if (giftMenu.hasGift()) {
-            return discountDetailFormat + NEW_LINE + toBenefitDescriptionAmountFormat(
-                    GIFT_EVENT, giftMenu.getMenuPrice());
-        }
-
-        return discountDetailFormat + NONE;
     }
 
     private String toBenefitDescriptionAmountFormat(String description, long amount) {
