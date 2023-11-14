@@ -27,7 +27,6 @@ class InputViewTest {
     void visitDate_not_number(String rawInput) {
         // given
         InputView inputView = getInputView(rawInput);
-        System.out.println("rawInput = " + rawInput);
 
         // when // then
         assertThatIllegalArgumentException()
